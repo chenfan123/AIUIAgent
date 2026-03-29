@@ -6,10 +6,8 @@
   "license": "ISC",
   "author": "",
   "main": "index.js",
-  "engines": {
-    "node": ">=18.0.0"
-  },
   "scripts": {
+    "mcp-server": "tsx mcpServer/main.ts",
     "server": "tsx server/src/index.tsx",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,5 +18,8 @@
     "inquirer": "^13.3.2",
     "openai": "^6.33.0",
     "tsx": "^4.21.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
