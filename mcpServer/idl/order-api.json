@@ -1,0 +1,118 @@
+{
+  "version": "1.0",
+  "service": "order",
+  "endpoints": [
+    {
+      "apiUrl": "/api/orders/:id",
+      "method": "GET",
+      "summary": "订单详情",
+      "request": {
+        "path": { "id": "string" },
+        "query": {},
+        "body": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "code": 200,
+          "message": "success",
+          "data": {
+            "id": "o_20001",
+            "userId": "u_10001",
+            "status": "paid",
+            "totalAmount": 199.9,
+            "currency": "CNY",
+            "createdAt": "2026-03-30T11:11:11Z",
+            "items": [
+              { "skuId": "sku_iphone_14", "name": "iPhone 14", "quantity": 1, "price": 199.9 }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "apiUrl": "/api/orders",
+      "method": "GET",
+      "summary": "订单列表（带分页）",
+      "request": {
+        "path": {},
+        "query": { "userId": "string|null", "page": "number", "pageSize": "number" },
+        "body": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "code": 200,
+          "message": "success",
+          "data": [
+            {
+              "id": "o_20001",
+              "userId": "u_10001",
+              "status": "paid",
+              "totalAmount": 199.9,
+              "currency": "CNY",
+              "createdAt": "2026-03-30T11:11:11Z"
+            },
+            {
+              "id": "o_20002",
+              "userId": "u_10002",
+              "status": "pending",
+              "totalAmount": 59.0,
+              "currency": "CNY",
+              "createdAt": "2026-03-29T09:01:01Z"
+            }
+          ],
+          "meta": { "total": 18, "page": 1, "pageSize": 10 }
+        }
+      }
+    },
+    {
+      "apiUrl": "/api/orders",
+      "method": "POST",
+      "summary": "创建订单",
+      "request": {
+        "path": {},
+        "query": {},
+        "body": {
+          "userId": "string",
+          "items": [{ "skuId": "string", "quantity": "number" }],
+          "currency": "string"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "code": 200,
+          "message": "success",
+          "data": {
+            "id": "o_20003",
+            "userId": "u_10003",
+            "status": "pending",
+            "totalAmount": 88.8,
+            "currency": "CNY",
+            "createdAt": "2026-03-30T12:00:00Z",
+            "items": [{ "skuId": "sku_sample", "name": "Sample", "quantity": 1, "price": 88.8 }]
+          }
+        }
+      }
+    },
+    {
+      "apiUrl": "/api/orders/:id/status",
+      "method": "PUT",
+      "summary": "更新订单状态",
+      "request": {
+        "path": { "id": "string" },
+        "query": {},
+        "body": { "status": "\"pending\"|\"paid\"|\"shipped\"|\"cancelled\"" }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "code": 200,
+          "message": "success",
+          "data": { "id": "o_20001", "status": "paid" }
+        }
+      }
+    }
+  ]
+}

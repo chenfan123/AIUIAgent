@@ -1,0 +1,75 @@
+{
+  "version": "1.0",
+  "service": "user",
+  "endpoints": [
+    {
+      "apiUrl": "/api/users/:id",
+      "method": "GET",
+      "summary": "获取用户详情",
+      "request": {
+        "path": { "id": "string" },
+        "query": {},
+        "body": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "code": 200,
+          "message": "success",
+          "data": {
+            "id": "u_10001",
+            "name": "张三",
+            "email": "zhangsan@example.com",
+            "age": 20,
+            "avatar": "https://example.com/avatar/u_10001.png",
+            "createdAt": "2026-03-30T10:00:00Z"
+          }
+        }
+      }
+    },
+    {
+      "apiUrl": "/api/users",
+      "method": "GET",
+      "summary": "用户列表（带分页）",
+      "request": {
+        "path": {},
+        "query": { "page": "number", "pageSize": "number", "keyword": "string|null" },
+        "body": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "code": 200,
+          "message": "success",
+          "data": [
+            { "id": "u_10001", "name": "张三", "email": "zhangsan@example.com", "age": 20 },
+            { "id": "u_10002", "name": "李四", "email": "lisi@example.com", "age": 22 }
+          ],
+          "meta": { "total": 42, "page": 1, "pageSize": 10 }
+        }
+      }
+    },
+    {
+      "apiUrl": "/api/users",
+      "method": "POST",
+      "summary": "创建用户",
+      "request": {
+        "path": {},
+        "query": {},
+        "body": {
+          "name": "string",
+          "email": "string",
+          "age": "number"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "code": 200,
+          "message": "success",
+          "data": { "id": "u_10003", "name": "王五", "email": "wangwu@example.com", "age": 25 }
+        }
+      }
+    }
+  ]
+}
